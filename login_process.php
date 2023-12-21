@@ -1,29 +1,33 @@
 <?php
 session_start();
-require_once('db_connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Lakukan sanitasi input sesuai kebutuhan
+    // Validasi dan sanitasi input sesuai kebutuhan
 
-    // Query untuk memeriksa keberadaan username dan password di database
-    $sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
+    // Koneksi ke database (gantilah dengan informasi koneksi database Anda)
+    $conn = new mysqli("localhost", "root", "", "toko8");
+
+    // Periksa koneksi
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Query ke database untuk memeriksa keberadaan pengguna
+    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
-        // Login berhasil, set session atau tindakan lainnya
+        // Pengguna berhasil login
         $_SESSION['username'] = $username;
-        header("Location: index.html"); // Ganti dengan halaman selamat datang setelah login
+        header("Location: dashboard.php"); // Ganti dengan halaman setelah login
     } else {
         // Login gagal
         echo "Invalid username or password";
     }
-} else {
-    // Jika bukan metode POST, redirect ke halaman login
-    header("Location: login.html");
-}
 
-$conn->close();
+    $conn->close();
+}
 ?>
