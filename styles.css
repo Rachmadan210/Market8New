@@ -22,13 +22,6 @@ nav {
   margin-top: 20px;
 }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-}
-
 nav ul {
   list-style: none;
   display: flex;
@@ -39,10 +32,14 @@ nav li {
   margin: 0 15px;
 }
 
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 main {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -86,13 +83,15 @@ footer {
 
 @media screen and (max-width: 600px) {
   nav {
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
-  nav ul {
-      flex-direction: column;
+
+  nav li {
+    margin: 10px 0;
   }
 
   main {
-      padding: 10px;
+    margin: 10px;
   }
 }
