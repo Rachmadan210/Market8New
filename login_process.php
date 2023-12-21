@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows == 1) {
         // Pengguna berhasil login
         $_SESSION['username'] = $username;
-        header("Location: dashboard.php"); // Ganti dengan halaman setelah login
+        header("Location: index.html"); // Ganti dengan halaman setelah login
     } else {
         // Login gagal
         echo "Invalid username or password";
